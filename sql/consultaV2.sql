@@ -39,3 +39,26 @@ show COLUMNS from usuarios
 -- necesitamos q en el resgistro se guarde la fecha y hora la la inscripcion que sea la del sistema
 alter table Usuarios_deportes
   add fechaInscripcion timestamp DEFAULT CURRENT_TIMESTAMP not null;
+
+-- esta le falta las fk se las vamos a añadir
+CREATE TABLE Usuarios_deportes (
+	idDeporte 	tinyint unsigned	NOT NULL,
+	idUsuario 	smallint unsigned	NOT NULL,
+	PRIMARY KEY (idDeporte, idUsuario),
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE Usuarios_deportes
+	ADD CONSTRAINT fk_idDeporte 
+			FOREIGN KEY (idDeporte) REFERENCES deportes(idDeporte);
+
+ALTER TABLE Usuarios_deportes
+	ADD CONSTRAINT fk_Usuario
+			FOREIGN KEY (idUsuario) REFERENCES Usuarios(idUsuario);
+
+-- nos hemos dado cuentea que en deporte queremos que tenga delete cascade y update cascade
+ALTER TABLE Usuarios_deportes
+  drop CONSTRAINT fk_idDeporte;
+-- ponerlo 
+ALTER TABLE Usuarios_deportes
+	ADD CONSTRAINT fk_idDeporte 
+			FOREIGN KEY (idDeporte) REFERENCES deportes(idDeporte) on DELETE CASCADE on UPDATE CASCADE;
