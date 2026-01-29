@@ -33,4 +33,9 @@ ALTER TABLE Usuarios
   MODIFY COLUMN perfil ENUM('c', 'u', 'l') NOT NULL;
 
 -- para commprobar si todo fue bien hacemos un show de la columna
+
 show COLUMNS from usuarios 
+
+-- necesitamos q en el resgistro se guarde la fecha y hora la la inscripcion que sea la del sistema
+alter table Usuarios_deportes
+  add fechaInscripcion timestamp DEFAULT CURRENT_TIMESTAMP not null;
