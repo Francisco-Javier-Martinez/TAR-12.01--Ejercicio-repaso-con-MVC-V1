@@ -1,0 +1,36 @@
+-- añadir un campo imagen a la tabla deporte sin que alteremos los datos que esten en la bd
+alter table deportes
+  add imagenDeportes MEDIUMBLOB null; -- en mysql se usa el blob y decidi meterle un mediumblob esto si se va a guardar la 
+  --imagen en la guardada en la bd
+
+-- si vamos a añadir la imagen que se guarde en una carpeta del servidor guardaremos el nombre
+-- vamos a quitar el valor mediumblob por un varchar donde ser guardara el nombre dela img
+alter table deportes
+  MODIFY imagenDeportes varchar(150) null;
+
+-- se va a filtrar por deprtes en varios sitios aparte no queremos que el deporte se repita
+-- asi que vamos a crear un indice unico para este campo
+CREATE UNIQUE INDEX ind_unq_Deportes on deportes(nombreDep);
+
+-- ver si se creo bien
+SHOW INDEX FROM deportes
+
+-- ahora nos hemos dado cuenta que si que necesitamos que en un momento muy oportuno 
+-- necesitamos que el nombre si se repita 
+alter table deportes
+	drop INDEX ind_unq_Deportes;
+
+-- pero si queremos que siga siendo un indice de busca pero no unico 
+create INDEX ind_Deportes on deportes(nombreDep);
+
+-- durante un estudio hemos decidido que la imagen no saldra de la base de datos mediante una votacion 
+-- han decidido remover el camp imagen del deporte
+ALTER TABLE deportes
+  DROP COLUMN imagenDeportes;
+
+-- ahora los usuarios tendran un perfil mas que es el de lector(l) tenemos que añadirlo
+ALTER TABLE Usuarios 
+  MODIFY COLUMN perfil ENUM('c', 'u', 'l') NOT NULL;
+
+-- para commprobar si todo fue bien hacemos un show de la columna
+show COLUMNS from usuarios 
