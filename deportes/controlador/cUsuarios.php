@@ -30,12 +30,26 @@
         
         //metodo para el inicio de sesion
         public function iniciarSesion(){
+            if($_POST['nombre']=='' || $_POST['password']==''){
+                $this->mensaje="Error: Los campos no pueden estar vacíos.";
+                $this->vista='aviso.php';
+                return;
+            }
+
             $this->mensaje=$this->modeloUsuarios->validarUsuario();
-            if($this->mensaje===true){
-                if (session_status() !== PHP_SESSION_ACTIVE) {
+            if(is_array($this->mensaje)){
+                //usamos el password verify para comprobar la contraseña
+                if(password_verify($_POST['password'], $this->mensaje['password'])){
                     session_start();
+                    $_SESSION['nombreUsuario']=$this->mensaje['nombreUsuario'];
+                    $_SESSION['idUsuario']=$this->mensaje['idUsuario'];
+                    $_SESSION['perfil']=$this->mensaje['perfil'];
+                    $this->mensaje="Inicio de sesión correcto.";
+                    $this->vista='panelAdmin.php';
+                }else{
+                    $this->mensaje="Error: Contraseña incorrecta.";
+                    $this->vista='aviso.php';
                 }
-                $this->vista='panelAdmin.php';
             }else{
                 $this->mensaje="Error: no tienes acceso de administrador.";
                 $this->vista='aviso.php';
