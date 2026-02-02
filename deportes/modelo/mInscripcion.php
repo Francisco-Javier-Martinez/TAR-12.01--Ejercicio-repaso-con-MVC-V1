@@ -43,6 +43,8 @@
                 //si es correcto retorno el id del usuario insertado
                 $idUsuario= $this->conexion->lastInsertId();
                 //registrar las inscripciones en deportes
+				// esto aqui no podria ir ya que los foerch van en el controlador
+				//pero queria probar las transacciones y por necesidad lo necesito aqui
                 foreach($_POST['deportes'] as $deporteId){
                     $this->registrarInscripcion($deporteId, $idUsuario);
                 }
@@ -130,4 +132,5 @@
                 }
         }
     }
+
 ?>
