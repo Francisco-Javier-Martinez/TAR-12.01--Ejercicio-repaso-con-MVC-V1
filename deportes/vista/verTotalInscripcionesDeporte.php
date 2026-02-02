@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Total de inscripciones por deporte</h2>
-    <ul>
-        <?php
-            foreach($datos as $total){
-                echo "<li>Deporte: ".$total['nombreDep']." - Total de inscritos: ".$total['Total_Gente_Inscrita']."</li>";
-            }
-        ?>
-    </ul>
+    <div class="card">
+        <h2>Total de inscripciones por deporte</h2>
+        <ul>
+            <?php
+                foreach($datos as $total){
+                    echo "<li>Deporte: ".$total['nombreDep']." - Total de inscritos: ".$total['Total_Gente_Inscrita']."</li>";
+                }
+            ?>
+        </ul>
+    </div>
     <a href="index.php?controlador=Usuarios&metodo=volverPanelAdmin">Volver al inicio</a>
 </body>
 </html>

@@ -104,3 +104,198 @@ a:active {
     #adminNav{width:220px;flex:0 0 220px}
     #adminMain{margin-left:24px}
 }
+
+
+form {
+    background: #ffffff;
+    padding: 28px 32px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    width: 400px; /* Un poco más ancho para que quepan bien las etiquetas largas */
+    max-width: calc(100% - 40px);
+    text-align: left;
+}
+
+form label {
+    display: block;
+    margin: 10px 0 6px;
+    color: #333;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* Inputs de texto y variaciones */
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form input[type="tel"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d2d6dc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+}
+
+
+form input[type="checkbox"] {
+    margin-right: 8px;
+    width: auto;
+    cursor: pointer;
+}
+
+
+form label > input[type="checkbox"] {
+    display: inline-block;
+    width: auto;
+}
+
+form button[type="submit"] {
+    width: 100%;
+    margin-top: 16px;
+    padding: 10px 12px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+    background: #0069d9;
+}
+
+
+form br {
+    content: "";
+    margin: 0;
+    display: block;
+}
+
+.card h2 {
+    margin-top: 0;
+    color: #222;
+    border-bottom: 2px solid #f0f0f5;
+    padding-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.card ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.card li {
+    background: #f8f9fa;
+    margin-bottom: 8px;
+    padding: 12px 15px;
+    border-radius: 6px;
+    border-left: 4px solid #007bff;
+    color: #444;
+    font-size: 0.95rem;
+    transition: transform 0.2s ease;
+}
+
+.card li:hover {
+    transform: translateX(5px);
+    background: #f1f3f5;
+}
+
+.card p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.card a {
+    display: inline-block;
+    margin-top: 10px;
+}
+/* Estenedor principal para la vista de deportes */
+.deportes-container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    width: 100%;
+    max-width: 600px;
+}
+
+.deportes-container h1 {
+    font-size: 1.6rem;
+    color: #222;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* El botón de añadir deporte (h2 con enlace) */
+.deportes-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.deportes-container h2 a {
+    background-color: #28a745; /* Verde para diferenciar la acción de "crear" */
+}
+
+.deportes-container h2 a:hover {
+    background-color: #218838;
+}
+
+/* Lista de deportes */
+.deportes-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Cada bloque de deporte generado por el foreach */
+.deporte-item {
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #fafafa;
+}
+
+.deporte-item img {
+    border-radius: 4px;
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.deporte-item p {
+    margin: 0;
+    font-weight: bold;
+    color: #333;
+    flex-grow: 1; /* Empuja los botones a la derecha */
+}
+
+/* Botones de acción (Editar / Eliminar) */
+.deporte-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.deporte-actions a {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+.deporte-actions a[href*="eliminar"] {
+    background-color: #dc3545; /* Rojo para eliminar */
+}
+
+.deporte-actions a[href*="eliminar"]:hover {
+    background-color: #c82333;
+}
