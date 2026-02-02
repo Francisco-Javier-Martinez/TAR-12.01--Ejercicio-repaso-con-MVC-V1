@@ -12,6 +12,18 @@
             $this->mensaje=null;
         }
 
+        //metodo para mostrar la pantalla de inscripcion
+        public function pantallaInscri(){
+            //coger los deportes disponibles
+            $deportes=$this->modeloInscripcion->obtenerDeportes();
+            if(is_array($deportes)){//si es un arrray es que pillo los deportes bien
+                $this->vista='inscripcion.php';
+                return $deportes;
+            }else{
+                $this->mensaje=$deportes;
+                $this->vista='aviso.php';
+            }
+        }
         //metodo para registrar un nuevo usuario
         public function registrarUsuario(){
             if($_POST['username']=='' || $_POST['nombre_completo']=='' || $_POST['password']=='' || $_POST['email']==''){
@@ -55,6 +67,30 @@
                 return $inscripciones;
             }else{
                 $this->mensaje=$inscripciones;
+                $this->vista='aviso.php';
+            }
+        }
+
+        //metodo para ver el total de deportes inscritos
+        public function totalDeportesInscritos(){
+            $total = $this->modeloInscripcion->totalDeportesInscritos();
+            if(is_array($total)){//si es un arrray es que pillo los deportes bien
+                $this->vista='verTotalDeportes.php';
+                return $total;
+            }else{
+                $this->mensaje=$total;
+                $this->vista='aviso.php';
+            }
+        }
+
+        //metodo para monstrar el total de inscripciones por deporte
+        public function totalInscripcionesPorDeporte(){
+            $totalPorDeporte = $this->modeloInscripcion->totalDeportesUsuarios();
+            if(is_array($totalPorDeporte)){//si es un arrray es que pillo los deportes bien
+                $this->vista='verTotalInscripcionesDeporte.php';
+                return $totalPorDeporte;
+            }else{
+                $this->mensaje=$totalPorDeporte;
                 $this->vista='aviso.php';
             }
         }
